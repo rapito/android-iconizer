@@ -64,9 +64,8 @@ public class CLIMain
             System.err.println("Couldn't iconize image: " + e.getMessage());
         }
 
-        System.out.println(in);
-        System.out.println(out);
-        System.out.println(name);
+        String output = "Resized " + in + " successfully to " + out;
+        System.out.println(output);
 
     }
 

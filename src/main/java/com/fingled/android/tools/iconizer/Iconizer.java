@@ -1,5 +1,9 @@
 package com.fingled.android.tools.iconizer;
 
+import org.imgscalr.Scalr;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -9,6 +13,7 @@ import java.io.IOException;
 public class Iconizer
 {
 
+    private static final String TEXT_DRAWABLE = "drawable-";
     private final IconSize.IconType iconType;
     private       String            name;
     private       File              out;
@@ -31,7 +36,7 @@ public class Iconizer
         resizeAndSaveIcons();
     }
 
-    private void resizeAndSaveIcons()
+    private void resizeAndSaveIcons() throws IOException
     {
         if (iconType == IconSize.IconType.ACTIONBAR)
             resizeAndSaveActionbarIcons();
@@ -41,19 +46,48 @@ public class Iconizer
             resizeAndSaveContextualIcons();
     }
 
-    private void resizeAndSaveContextualIcons()
+    private void resizeAndSaveContextualIcons() throws IOException
     {
+        BufferedImage inputImg = ImageIO.read(in);
 
+        BufferedImage ldpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_LDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage mdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_MDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage hdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_HDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage xhdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_XHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage xxhdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_XXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage xxxhdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_XXXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage playStoreImg = Scalr.resize(inputImg, IconSize.SIZE_PLAY_STORE, Scalr.THRESHOLD_QUALITY_BALANCED);
+
+        writeImagePack(ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi);
+        writeImage(playStoreImg, null);
     }
 
-    private void resizeAndSaveNotificationIcons()
+    private void resizeAndSaveNotificationIcons() throws IOException
     {
+        BufferedImage inputImg = ImageIO.read(in);
 
+        BufferedImage ldpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_LDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage mdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_MDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage hdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_HDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage xhdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_XHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage xxhdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_XXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage xxxhdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_XXXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+
+        writeImagePack(ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi);
     }
 
-    private void resizeAndSaveActionbarIcons()
+    private void resizeAndSaveActionbarIcons() throws IOException
     {
+        BufferedImage inputImg = ImageIO.read(in);
 
+        BufferedImage ldpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_LDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage mdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_MDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage hdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_HDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage xhdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_XHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage xxhdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_XXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage xxxhdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_XXXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+
+        writeImagePack(ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi);
     }
 
     private void validateOuputFile() throws IOException
@@ -62,7 +96,7 @@ public class Iconizer
         {
             out = new File(name);
         }
-        else if (!out.isDirectory())
+        else if (out.exists() && !out.isDirectory())
         {
             throw new IOException("output is not a directory");
         }
@@ -72,6 +106,32 @@ public class Iconizer
             throw new IOException("output directory could not be created, " +
                                   "make sure you have enough privileges or that the path is not blocked by other app");
         }
+    }
+
+    private void writeImagePack(BufferedImage ldpi, BufferedImage mdpi, BufferedImage hdpi, BufferedImage xhdpi, BufferedImage xxhdpi, BufferedImage xxxhdpi) throws IOException
+    {
+        writeImage(ldpi, TEXT_DRAWABLE + "ldpi");
+        writeImage(mdpi, TEXT_DRAWABLE + "mdpi");
+        writeImage(hdpi, TEXT_DRAWABLE + "hdpi");
+        writeImage(xhdpi, TEXT_DRAWABLE + "xhdpi");
+        writeImage(xxhdpi, TEXT_DRAWABLE + "xxhdpi");
+        writeImage(xxxhdpi, TEXT_DRAWABLE + "xxxhdpi");
+    }
+
+    private void writeImage(BufferedImage image, String directory) throws IOException
+    {
+
+        String path = directory != null && directory.trim().length() > 0 ?
+                      out.getAbsolutePath() + "/" + directory + "/" + name + ".png" :
+                      out.getAbsolutePath() + "/" + name + ".png";
+        File file = new File(path);
+        file.mkdirs();
+        if (!ImageIO.write(image, "png", file))
+        {
+            throw new IOException("There was an error trying to save the resized images to disk, check that you have " +
+                                  "enough disk space available or sufficient user privileges on the output directory.");
+        }
+
     }
 
     private void validateFileName()
