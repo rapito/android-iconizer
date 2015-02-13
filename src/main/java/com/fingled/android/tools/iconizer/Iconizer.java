@@ -1,9 +1,11 @@
 package com.fingled.android.tools.iconizer;
 
+import com.sun.javafx.sg.PGShape;
 import org.imgscalr.Scalr;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
 import java.io.File;
 import java.io.IOException;
 
@@ -50,13 +52,13 @@ public class Iconizer
     {
         BufferedImage inputImg = ImageIO.read(in);
 
-        BufferedImage ldpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_LDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage mdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_MDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage hdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_HDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage xhdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_XHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage xxhdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_XXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage xxxhdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_XXXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage playStoreImg = Scalr.resize(inputImg, IconSize.SIZE_PLAY_STORE, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage ldpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_LDPI, IconSize.SIZE_CONTEXTUAL_LDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage mdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_MDPI, IconSize.SIZE_CONTEXTUAL_MDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage hdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_HDPI, IconSize.SIZE_CONTEXTUAL_HDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage xhdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_XHDPI, IconSize.SIZE_CONTEXTUAL_XHDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage xxhdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_XXHDPI, IconSize.SIZE_CONTEXTUAL_XXHDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage xxxhdpi = Scalr.resize(inputImg, IconSize.SIZE_CONTEXTUAL_XXXHDPI, IconSize.SIZE_CONTEXTUAL_XXXHDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage playStoreImg = Scalr.resize(inputImg, IconSize.SIZE_PLAY_STORE, IconSize.SIZE_PLAY_STORE, Scalr.OP_ANTIALIAS);
 
         writeImagePack(ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi);
         writeImage(playStoreImg, null);
@@ -66,12 +68,12 @@ public class Iconizer
     {
         BufferedImage inputImg = ImageIO.read(in);
 
-        BufferedImage ldpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_LDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage mdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_MDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage hdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_HDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage xhdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_XHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage xxhdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_XXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage xxxhdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_XXXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage ldpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_LDPI, IconSize.SIZE_NOTIFICATION_LDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage mdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_MDPI, IconSize.SIZE_NOTIFICATION_MDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage hdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_HDPI, IconSize.SIZE_NOTIFICATION_HDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage xhdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_XHDPI, IconSize.SIZE_NOTIFICATION_XHDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage xxhdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_XXHDPI, IconSize.SIZE_NOTIFICATION_XXHDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage xxxhdpi = Scalr.resize(inputImg, IconSize.SIZE_NOTIFICATION_XXXHDPI, IconSize.SIZE_NOTIFICATION_XXXHDPI, Scalr.OP_ANTIALIAS);
 
         writeImagePack(ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi);
     }
@@ -80,12 +82,12 @@ public class Iconizer
     {
         BufferedImage inputImg = ImageIO.read(in);
 
-        BufferedImage ldpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_LDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage mdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_MDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage hdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_HDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage xhdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_XHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage xxhdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_XXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
-        BufferedImage xxxhdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_XXXHDPI, Scalr.THRESHOLD_QUALITY_BALANCED);
+        BufferedImage ldpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_LDPI, IconSize.SIZE_ACTIONBAR_LDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage mdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_MDPI, IconSize.SIZE_ACTIONBAR_MDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage hdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_HDPI, IconSize.SIZE_ACTIONBAR_HDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage xhdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_XHDPI, IconSize.SIZE_ACTIONBAR_XHDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage xxhdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_XXHDPI, IconSize.SIZE_ACTIONBAR_XXHDPI, Scalr.OP_ANTIALIAS);
+        BufferedImage xxxhdpi = Scalr.resize(inputImg, IconSize.SIZE_ACTIONBAR_XXXHDPI, IconSize.SIZE_ACTIONBAR_XXXHDPI, Scalr.OP_ANTIALIAS);
 
         writeImagePack(ldpi, mdpi, hdpi, xhdpi, xxhdpi, xxxhdpi);
     }
@@ -137,7 +139,10 @@ public class Iconizer
     private void validateFileName()
     {
         if (name == null || name.length() == 0)
+        {
             name = in.getName();
+            name = name.substring(0, name.lastIndexOf('.'));
+        }
     }
 
     private void validateInputFile()
