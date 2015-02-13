@@ -1,1 +1,1 @@
-java -jar %~dp0/android-iconizer.jar
+start javaw -jar %~dp0/android-iconizer.jar
