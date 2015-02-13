@@ -8,7 +8,21 @@ Java tool to create resized copies of an Image to use on android resources.
 
 ## Usage
 
-- cli 
-```
-iconizer.jar image.png
-```
+- cli:
+
+    - ```-i(--input)``` Absolute path of icon to resize.
+    - ```-o(--output)``` Absolute to save the resized images to.
+    - ```-n(--name)``` Output filename of the icon.
+    - ```-t(--type)[contextual,actionbar,notification]``` Type of icon, this specifies the resolution used to resize the icon.
+
+    ```
+    java -jar android-iconizer.jar -i "C:/image.png" -o "C:/output/" -name "my-awesome-icon" -t contextual
+    ```
+
+## dependencies
+
+    Special thanks to the creators of these libraries:
+
+     - [imgscalr](https://github.com/thebuzzmedia/imgscalr) by [thebuzzmedia](https://github.com/thebuzzmedia/)
+     - [args4j](https://github.com/kohsuke/args4j) by [kohsuke](https://github.com/kohsuke/args4j)
+
