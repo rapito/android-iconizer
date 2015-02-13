@@ -4,7 +4,7 @@ Java tool to create resized copies of an Image to use on android resources.
 ## How it works
 
 - Receives any valid image file as an input.
-- Creates android dpi folder structure and puts each corresponding image in it's place
+- Creates android drawable folder structure and puts each corresponding image on it's place.
 
 ## Usage
 
@@ -20,6 +20,19 @@ Java tool to create resized copies of an Image to use on android resources.
     ```
 
 \* *required*
+
+## Build
+
+To build use the following maven cli command:
+
+```
+mvn clean install assembly:single
+```
+
+It will generate two files:
+
+- **android-iconizer-{version}.jar**: No dependency binary. (won't work unless ou set the classpath with all dependencies manually)
+- **android-iconizer.jar**: Binary with library dependencies embedded. This is the actual executable.
 
 ## Dependencies
 

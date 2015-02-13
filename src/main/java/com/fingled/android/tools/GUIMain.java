@@ -1,6 +1,6 @@
 package com.fingled.android.tools;
 
-import com.fingled.android.tools.gui.IconizerGUI;
+import com.fingled.android.tools.iconizer.gui.IconizerGUI;
 
 import javax.swing.*;
 

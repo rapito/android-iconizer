@@ -53,7 +53,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.fingled.android.tools.CLIMain</mainClass>
+                            <mainClass>com.fingled.android.tools.AppMain</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -65,7 +65,7 @@
                     <appendAssemblyId>false</appendAssemblyId>
                     <archive>
                         <manifest>
-                            <mainClass>com.fingled.android.tools.CLIMain</mainClass>
+                            <mainClass>com.fingled.android.tools.AppMain</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>

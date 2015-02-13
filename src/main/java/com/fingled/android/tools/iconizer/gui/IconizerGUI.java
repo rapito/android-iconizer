@@ -1,6 +1,5 @@
-package com.fingled.android.tools.gui;
+package com.fingled.android.tools.iconizer.gui;
 
-import com.fingled.android.tools.GUIMain;
 import com.fingled.android.tools.iconizer.IconSize;
 import com.fingled.android.tools.iconizer.Iconizer;
 import com.fingled.android.tools.util.FileUtil;
