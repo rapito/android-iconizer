@@ -8,6 +8,12 @@ Java tool to create resized copies of an Image to use on android resources.
 
 ## Usage
 
+- gui:
+
+    - Open ```bin/``` folder.
+        - **Unix**: Execute ```android-iconizer-gui.sh```
+        - **Windows**: Execute ```android-iconizer-gui.cmd```
+
 - cli:
 
     - ```-i(--input)```*    Absolute path of icon to resize.
