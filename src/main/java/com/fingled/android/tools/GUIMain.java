@@ -16,7 +16,18 @@ public class GUIMain
         {
             public void run()
             {
-                new IconizerGUI().showSelf();
+                try
+                {
+                    IconizerGUI gui = new IconizerGUI();
+                    gui.showSelf();
+                    gui.setResizable(false);
+
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
             }
         });
     }
