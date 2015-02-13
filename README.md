@@ -1,5 +1,5 @@
 # android-iconizer
-Java tool to create resized copies of an Image to use on android resources.
+GUI and CLI Tool to easily create resized copies of an Image to use as an android resource.
 
 ## How it works
 
